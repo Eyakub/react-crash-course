@@ -34,6 +34,7 @@ class SignupForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const {isValid, errors} = this.validate()
+    console.log(errors)
     if(isValid){
       this.props.createUser(this.state.values)
       console.log(this.state.values)
@@ -50,6 +51,7 @@ class SignupForm extends React.Component {
   validate = () => {
     const errors = {};
     const {values: {name, email, password, gender, birthDate}, agreement} = this.state
+    console.log(gender)
     if(!name){
       errors.name = 'Please provide your name';
     } else if(name.length < 10){

@@ -54,6 +54,7 @@ const Form = props => {
             type="radio"
             name="gender"
             value="Male"
+            onClick={()=> console.log(props.values.gender)}
             onChange={props.handleChange}
           />
           Male
@@ -64,6 +65,7 @@ const Form = props => {
             type="radio"
             name="gender"
             value="Female"
+            onClick={()=> console.log(props.values.gender)}
             onChange={props.handleChange}
           />
           Female
@@ -74,6 +76,7 @@ const Form = props => {
             type="radio"
             name="gender"
             value="Other"
+            onClick={()=> console.log(props.values.gender)}
             onChange={props.handleChange}
           />
           Other

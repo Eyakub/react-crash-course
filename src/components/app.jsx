@@ -1,17 +1,17 @@
-import React from 'react';
-import Profile from './profile';
-import MyProps from './props';
-import Bio from './profile/bio';
-import Counter from './counter';
-import Inputs from '../components/inputs';
-import UncontrolledForm from '../components/uncontrolled_form';
-import ControlledForm from '../components/controlled_form';
-import SignupForm from '../components/signup-form';
+import React from "react";
+import Profile from "./profile";
+import MyProps from "./props";
+import Bio from "./profile/bio";
+import Counter from "./counter";
+import Inputs from "../components/inputs";
+import UncontrolledForm from "../components/uncontrolled_form";
+import ControlledForm from "../components/controlled_form";
+import SignupForm from "../components/signup-form";
 
-import classes from './app.module.css';
-import SplitForm from './split-form';
+import classes from "./app.module.css";
+import SplitForm from "./split-form";
 
-class App extends React.Component{
+class App extends React.Component {
   // Data and logic layer
   /**
    * 1. State
@@ -25,40 +25,40 @@ class App extends React.Component{
    * 5. JSX
    */
   state = {
-    name: '',
+    name: "",
     users: [],
-  }
+  };
 
   handleButtonClick = (event) => {
     console.log("Clicked on - ", event.target);
-  }
+  };
 
   handleChange = (event) => {
-    this.setState({name: event.target.value})
-    console.log(event.target.value)
-  }
+    this.setState({ name: event.target.value });
+    console.log(event.target.value);
+  };
 
   // checking input field focused or not
-  handleFocus = (event) =>  {
-    console.log('im focus event')
-  }
+  handleFocus = (event) => {
+    console.log("im focus event");
+  };
 
   // Blur checks on outside of your event
   handleBlur = (event) => {
-    if(!this.state.name){
-      alert('Please enter your name')
+    if (!this.state.name) {
+      alert("Please enter your name");
     }
-    console.log('im blur event')
-  }
+    console.log("im blur event");
+  };
 
-  createUser = user => {
-    user.id = new Date().getTime().toString()
+  createUser = (user) => {
+    user.id = new Date().getTime().toString();
     this.setState({
       // getting the previous users, pass the new user
-      users: [...this.state.users, user]
-    })
-  }
-  render(){
+      users: [ ... this.state.users, user],
+    });
+  };
+  render() {
     return (
       <div className="App">
         {/* <Profile/>
@@ -67,43 +67,49 @@ class App extends React.Component{
         <Counter /> */}
         <div className={classes.wrapper}>
           <h1 className={classes.heading}>Events in React</h1>
-          <button className={classes.button} onClick={this.handleButtonClick}>Click me</button>
-          <br/>
-          <input className={classes.text} 
-            type="text" 
+          <button className={classes.button} onClick={this.handleButtonClick}>
+            Click me
+          </button>
+          <br />
+          <input
+            className={classes.text}
+            type="text"
             placeholder="Enter some text..."
             value={this.state.name}
             onChange={this.handleChange}
             onFocus={this.handleFocus}
-            onBlur={this.handleBlur}/>
+            onBlur={this.handleBlur}
+          />
         </div>
-        <br/>
+        <br />
         {this.state.name && <h1>Welcome, {this.state.name}</h1>}
         {/* <hr/>
         <div className={classes.wrapper}>
          <Inputs/>
         </div> */}
-        <hr/>
+        <hr />
         <div className={classes.wrapper}>
           <UncontrolledForm />
         </div>
-        <hr/>
+        <hr />
         <div className={classes.wrapper}>
           {/* <ControlledForm /> */}
           {/* <SplitForm /> */}
           <SignupForm createUser={this.createUser} />
         </div>
-        <hr/>
+        <hr />
         <div className={classes.wrapper}>
           <h3>All Registered Users</h3>
           <ul className="list-group">
-            {this.state.users.map(user => (<li key={user.id} className='list-group-item'>
-              {user.name} -> {user.email}
-            </li>))}
+            {this.state.users.map((user) => (
+              <li key={user.id} className="list-group-item">
+                {user.name} -> {user.email}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
-    )
+    );
   }
 }
 
