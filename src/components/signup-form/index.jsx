@@ -8,14 +8,14 @@ const initValues = {
   email: "",
   password: "",
   birthDate: "",
-  gender: "",
+  gender: ""
 };
 
 class SignupForm extends React.Component {
   state = {
     values: initValues,
     agreement: false,
-    errors: {},
+    errors: {}
   };
 
   handleChange = (event) => {
