@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 // distucturing data
 // const Form = ({values, handleChange}) =>
 
-const Form = (props) => {
+const Form = props => {
   return (
     <form onSubmit={props.handleSubmit}>
       <TextInput
@@ -15,6 +15,7 @@ const Form = (props) => {
         label="Name"
         placeholder="Eyakub Sorkar"
         value={props.values.name}
+        error={props.errors.name}
         onChange={props.handleChange}
       />
       <TextInput
@@ -24,6 +25,7 @@ const Form = (props) => {
         label="Email"
         placeholder="eyakubsorkar@gmail.com"
         value={props.values.email}
+        error={props.errors.email}
         onChange={props.handleChange}
       />
       <TextInput
@@ -33,6 +35,7 @@ const Form = (props) => {
         label="Password"
         placeholder="*****"
         value={props.values.password}
+        error={props.errors.password}
         onChange={props.handleChange}
       />
       <TextInput
@@ -41,6 +44,7 @@ const Form = (props) => {
         type="date"
         label="BirthDate"
         value={props.values.birthDate}
+        error={props.errors.birthDate}
         onChange={props.handleChange}
       />
       <div className="form-group">
@@ -74,6 +78,7 @@ const Form = (props) => {
           />
           Other
         </label>
+        { props.errors.gender && <div className='invalid-feedback'>{props.errors.gender}</div>}
       </div>
       <div className="form-group">
         <label className='mr-4'>
@@ -101,6 +106,7 @@ Form.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleAgreement: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 }
 
 export default Form;

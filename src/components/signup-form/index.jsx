@@ -13,6 +13,7 @@ class SignupForm extends React.Component {
   state = {
     values: initValues,
     agreement: false,
+    errors: {},
   };
 
   handleChange = (event) => {
@@ -30,10 +31,49 @@ class SignupForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.values);
-    event.target.reset();
-    this.setState({values: initValues, agreement: false});
+    const {isValid, errors} = this.validate()
+    if(isValid){
+      console.log(this.state.values)
+      event.target.reset();
+      this.setState({values: initValues, agreement: false, errors: {}})
+    } else {
+      // console.error(errors);
+      this.setState({
+        errors
+      })
+    }
   };
+
+  validate = () => {
+    const errors = {};
+    const {values: {name, email, password, gender, birthDate}, agreement} = this.state
+    if(!name){
+      errors.name = 'Please provide your name';
+    } else if(name.length < 10){
+      errors.name = "Name should be at least more than 10 length"
+    }
+    if(!email){
+      errors.email = 'Please provide your email';
+    }
+    if(!password){
+      errors.password = 'Please provide your password';
+    }
+    if(!birthDate){
+      errors.birthDate = 'Please provide your BirthDate';
+    }
+    if(!gender){
+      errors.gender = 'Please select your gender';
+    }
+    if(agreement === false){
+      errors.agreement = 'To Signup you have to agree with us.';
+    }
+
+    return {
+      errors,
+      // this will return a keys in a list way of errors
+      isValid: Object.keys(errors).length === 0,
+    }
+  }
 
   render() {
     return(
@@ -41,6 +81,7 @@ class SignupForm extends React.Component {
         <h1>Signup Form</h1>
         <Form 
           values={this.state.values}
+          errors={this.state.errors}
           agreement={this.state.agreement}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
