@@ -60,3 +60,7 @@ class ControlledForm extends React.Component {
   }
 }
 export default ControlledForm;
+/**
+ * Index -> state and logic (submit handler, change handler, blur handler, validation)
+ * Form -> form jsx
+ */

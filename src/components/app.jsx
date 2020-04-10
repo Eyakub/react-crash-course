@@ -8,6 +8,7 @@ import UncontrolledForm from '../components/uncontrolled_form';
 import ControlledForm from '../components/controlled_form';
 
 import classes from './app.module.css';
+import SplitForm from './split-form';
 
 class App extends React.Component{
   // Data and logic layer
@@ -78,7 +79,8 @@ class App extends React.Component{
         </div>
         <hr/>
         <div className={classes.wrapper}>
-          <ControlledForm />
+          {/* <ControlledForm /> */}
+          <SplitForm />
         </div>
       </div>
     )
