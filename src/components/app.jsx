@@ -25,7 +25,8 @@ class App extends React.Component{
    * 5. JSX
    */
   state = {
-    name: ''
+    name: '',
+    users: [],
   }
 
   handleButtonClick = (event) => {
@@ -48,6 +49,14 @@ class App extends React.Component{
       alert('Please enter your name')
     }
     console.log('im blur event')
+  }
+
+  createUser = user => {
+    user.id = new Date().getTime().toString()
+    this.setState({
+      // getting the previous users, pass the new user
+      users: [...this.state.users, user]
+    })
   }
   render(){
     return (
@@ -82,7 +91,16 @@ class App extends React.Component{
         <div className={classes.wrapper}>
           {/* <ControlledForm /> */}
           {/* <SplitForm /> */}
-          <SignupForm />
+          <SignupForm createUser={this.createUser} />
+        </div>
+        <hr/>
+        <div className={classes.wrapper}>
+          <h3>All Registered Users</h3>
+          <ul className="list-group">
+            {this.state.users.map(user => (<li key={user.id} className='list-group-item'>
+              {user.name} -> {user.email}
+            </li>))}
+          </ul>
         </div>
       </div>
     )
