@@ -6,6 +6,7 @@ import Counter from './counter';
 import Inputs from '../components/inputs';
 import UncontrolledForm from '../components/uncontrolled_form';
 import ControlledForm from '../components/controlled_form';
+import SignupForm from '../components/signup-form';
 
 import classes from './app.module.css';
 import SplitForm from './split-form';
@@ -80,7 +81,8 @@ class App extends React.Component{
         <hr/>
         <div className={classes.wrapper}>
           {/* <ControlledForm /> */}
-          <SplitForm />
+          {/* <SplitForm /> */}
+          <SignupForm />
         </div>
       </div>
     )
